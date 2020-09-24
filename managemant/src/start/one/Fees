@@ -1,0 +1,117 @@
+package start.one;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import java.util.Scanner;
+
+public class Fees {
+
+	public static void main(String[] args) {
+		Scanner sc  = new Scanner(System.in);
+		int choice,year;
+		String name,password = null,confirmPassword = null,section,email,branch,rollNumber,crtPassword;
+		 List<Student> list = new ArrayList<Student>();
+		boolean flag,flag1 = false;
+		do {
+			System.out.println("1. LogIn");
+			System.out.println("2. Register");
+			System.out.println("3.exit ");
+			System.out.println("Enter your choice :");
+			choice = sc.nextInt();
+			switch(choice) {
+			case 1:  System.out.println("LogIn");
+			System.out.println(" UserName :");
+			sc.nextLine();
+			name = sc.nextLine();
+	      	  for(Student obj : list) {
+	      		  if(obj.getName().equals(name)) {
+	      			  flag = true;
+	      			if(flag == true) {
+		      			  System.out.println("enter the password");
+		      			  password = sc.nextLine();
+		      			  if(obj.getPassword().contentEquals(password)) {
+		      				  flag1 = true;		      				
+		      			  }
+		      			  else {
+	      					  flag1 = false;
+	      				      while(flag1 == false) {      				  
+	      				  System.out.println("Wrong Password");
+	      				  System.out.println("ReEnter Password");
+	      				  crtPassword = sc.nextLine();
+	      				  if(obj.getPassword().equals(crtPassword)) {
+	    					 flag1 = true;
+	    				  }
+	      			      }
+	      				  if(flag1 == true) {
+	      					 System.out.println("logged in successfully");
+	      				  }
+		      				 
+		      				  break;
+		      			  }
+	      			}
+		      			  else {
+		      				
+	      			}
+	      		  }
+	      		  else {
+	      				  flag = false;
+	      				if(flag == false) {
+	      	      		  System.out.println("no such user found");
+	      	      	      }
+	      	      	  
+	      			  }
+	      	  }
+			     break;	
+			case 2: System.out.println("Registration");
+			System.out.println(" UserName :");
+			sc.nextLine();
+			name = sc.nextLine();
+			System.out.println(" Password (String type):");
+			password = sc.nextLine();
+			System.out.println(" ConfirmPassword (String type):");
+			confirmPassword = sc.nextLine();
+			if(password.equals(confirmPassword)){
+				flag = true;
+			}
+			else {
+				flag = false;
+			while(flag == false) {
+				System.out.println("Password doesn't match!");
+				System.out.println("ReEnter Password");
+				confirmPassword = sc.nextLine();
+				if(password.equals(confirmPassword)) {
+					flag = true;
+				}
+			}
+			}
+			if(flag == true) {
+					System.out.println(" Year :");
+					year = sc.nextInt();
+					System.out.println(" RollNumber :");
+					sc.nextLine();
+					rollNumber = sc.nextLine();
+					System.out.println(" Section :");
+					sc.nextLine();
+					section = sc.nextLine();
+					System.out.println(" Email :");
+					email = sc.nextLine();
+					System.out.println(" Branch :");
+					branch = sc.nextLine();
+					Student student = new Student(year,name,password,section, email,
+							branch, rollNumber);
+					list.add(student);
+					System.out.println("Student has Registered successfully !");
+			   }
+			
+					break;
+			}
+		}while(choice < 3);
+		
+	}
+}
+			
+
+	
+
+
